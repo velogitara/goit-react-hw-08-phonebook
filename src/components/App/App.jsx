@@ -14,7 +14,6 @@ import PublicRoute from 'components/Routes/PublicRoute';
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingUser);
-  // console.log(isFetchingCurrentUser);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
@@ -57,10 +56,6 @@ export default function App() {
                 </PrivateRoute>
               }
             ></Route>
-
-            {/* <PrivateRoute path="/contacts">
-            element={<ContactsContainer />}
-          </PrivateRoute> */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

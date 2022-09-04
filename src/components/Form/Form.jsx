@@ -7,7 +7,6 @@ import {
   Input,
   AddingLoader,
 } from './Form.styled';
-// import { nanoid } from 'nanoid';
 import { useFetchContactsQuery, useAddContactMutation } from 'redux/contacts';
 import { useDispatch, useSelector } from 'react-redux';
 import { addName, addNumber, getName, getNumber } from '../../redux/contacts';

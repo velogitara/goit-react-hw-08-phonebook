@@ -34,14 +34,12 @@ export const getFilter = state => state.contacts.filter;
 export const getName = state => state.contacts.name;
 export const getNumber = state => state.contacts.number;
 
-// Define a service using a base URL and expected endpoints
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      // console.log(token);
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
@@ -57,7 +55,6 @@ export const contactsApi = createApi({
     fetchContacts: builder.query({
       query: () => `/contacts`,
       providesTags: result => {
-        // console.log(result);
         return result
           ? [
               ...result.map(({ id }) => ({ type: 'Contacts', id })),

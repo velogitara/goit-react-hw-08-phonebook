@@ -10,7 +10,6 @@ export default function AppBar() {
   return (
     <Header>
       <Navigation />
-
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </Header>
   );
