@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/750.a0d89d35.chunk.js","mappings":"uMAAe,SAASA,IACtB,OAAO,oLACR,C","sources":["Pages/MainPage/MainPage.jsx"],"sourcesContent":["export default function MainPage() {\n  return <h1>Приветствие пользователя 🎉</h1>;\n}\n"],"names":["MainPage"],"sourceRoot":""}
