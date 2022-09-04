@@ -28,7 +28,7 @@ export default function App() {
     !isFetchingCurrentUser && (
       <Container>
         <AppBar />
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader size={'large'} />}>
           <Routes>
             <Route path="/" element={<MainPage />}></Route>
             <Route

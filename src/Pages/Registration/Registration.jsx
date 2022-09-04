@@ -84,9 +84,9 @@ const Registration = () => {
           type="password"
           name="password"
           inputMode="number"
-          minLength="6"
+          minLength="7"
           maxLength="12"
-          // pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,12}$"
+          // pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{7,12}$"
           // title="(At least one lowercase letter(a - z).At least one uppercase letter(A - Z).At least one numeric value(0-9).At least one special symbol(!@#$%^&*=+-_).The total length should be greater than or equal to 6 and less or equal to 12."
           required
           value={password}
