@@ -32,7 +32,9 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    //  Добавить обработку ошибки error.message
+    Notify.failure('wrong login or email ', {
+      position: 'center-center',
+    });
   }
 });
 
@@ -41,7 +43,9 @@ const logOut = createAsyncThunk('auth/logout', async () => {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    //  Добавить обработку ошибки error.message
+    Notify.failure('Something went wrong ', {
+      position: 'center-center',
+    });
   }
 });
 
@@ -60,7 +64,9 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      // Добавить обработку ошибки error.message
+      Notify.failure('Something went wrong ', {
+        position: 'center-center',
+      });
     }
   }
 );
