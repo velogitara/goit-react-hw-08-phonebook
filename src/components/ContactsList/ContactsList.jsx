@@ -1,26 +1,15 @@
-import {
-  useFetchContactsQuery,
-  useDeleteContactMutation,
-} from 'redux/contacts';
+import { useFetchContactsQuery } from 'redux/contacts';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/contacts';
 import Filter from '../Filter';
 import Loader from '../Loader';
+import ContactListItem from '../ContactListItem';
 
-import {
-  ButtonDelete,
-  Ul,
-  List,
-  Number,
-  TitleStyle,
-  ValueStyle,
-} from './ContactsList.styled';
+import { Ul, TitleStyle } from './ContactsList.styled';
 
 export const ContactList = () => {
   const { data } = useFetchContactsQuery();
   const { isFetching } = useFetchContactsQuery();
-
-  const [deleteContact] = useDeleteContactMutation();
 
   const filterValue = useSelector(getFilter);
   let newData = [];
@@ -41,29 +30,12 @@ export const ContactList = () => {
       ) : (
         <div></div>
       )}
-      {isFetching && <Loader />}
+      {isFetching && <Loader size={'large'} />}
 
       <Ul>
         {filteredContacts.length ? (
           filteredContacts.map(item => {
-            return (
-              <List key={item.id}>
-                <span>
-                  <TitleStyle>Name:</TitleStyle>
-                  <ValueStyle> {item.name}</ValueStyle>
-                </span>
-                <Number>
-                  <TitleStyle>Number:</TitleStyle>
-                  <ValueStyle>{item.phone}</ValueStyle>
-                </Number>
-                <ButtonDelete
-                  type="button"
-                  onClick={() => deleteContact(item.id)}
-                >
-                  delete
-                </ButtonDelete>
-              </List>
-            );
+            return <ContactListItem key={item.id} {...item} />;
           })
         ) : (
           <div>

@@ -16,3 +16,6 @@ export const ButtonAdd = styled.button`
 export const Input = styled.input`
   margin-left: 5px;
 `;
+export const AddingLoader = styled.span`
+  display: flex;
+`;

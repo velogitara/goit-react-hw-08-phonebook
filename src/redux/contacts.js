@@ -7,12 +7,17 @@ export const itemsSlice = createSlice({
   name: 'contacts',
   initialState: {
     // items: [],
+    name: '',
+    number: '',
     filter: '',
   },
   reducers: {
-    // addContact(state, action) {
-    //   state.items.push(action.payload);
-    // },
+    addName(state, action) {
+      state.name = action.payload;
+    },
+    addNumber(state, action) {
+      state.number = action.payload;
+    },
     // removeContact(state, action) {
     //   state.items = state.items.filter(item => item.id !== action.payload);
     // },
@@ -21,9 +26,11 @@ export const itemsSlice = createSlice({
     },
   },
 });
-export const { addFilter } = itemsSlice.actions;
+export const { addFilter, addName, addNumber } = itemsSlice.actions;
 
 export const getFilter = state => state.contacts.filter;
+export const getName = state => state.contacts.name;
+export const getNumber = state => state.contacts.number;
 
 // Define a service using a base URL and expected endpoints
 export const contactsApi = createApi({

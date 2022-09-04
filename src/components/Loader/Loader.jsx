@@ -1,10 +1,14 @@
 import { Circles } from 'react-loader-spinner';
 import { CircleContainer } from './Loader.styled';
 
-export default function Loader() {
+export default function Loader({ size }) {
   return (
-    <CircleContainer>
-      <Circles color="#00BFFF" height={50} width={50} />
+    <CircleContainer size={size}>
+      <Circles
+        width={size === 'large' ? 40 : 10}
+        height={size === 'large' ? 40 : 10}
+        color="#00BFFF"
+      />
     </CircleContainer>
   );
 }
