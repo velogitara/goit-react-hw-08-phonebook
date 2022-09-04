@@ -24,7 +24,7 @@ function Form() {
   const numberValue = useSelector(getNumber);
 
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   // const reset = () => {
   //   setName('');
@@ -33,14 +33,8 @@ function Form() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const objWithId = { phone, name };
+    const objWithId = { number, name };
     formSubmitHandler(objWithId);
-    console.log(
-      addContact().then(res => {
-        console.log(res);
-        return res;
-      })
-    );
   };
 
   const formSubmitHandler = data => {
@@ -60,7 +54,7 @@ function Form() {
         break;
 
       case 'number':
-        setPhone(value);
+        setNumber(value);
         dispatch(addNumber(value));
         break;
       default:
@@ -83,7 +77,7 @@ function Form() {
         />
       </Label>
       <Label>
-        <span>Phone</span>
+        <span>Number</span>
         <Input
           type="tel"
           name="number"

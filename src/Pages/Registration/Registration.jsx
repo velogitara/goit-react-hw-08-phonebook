@@ -2,12 +2,14 @@ import { Form, P, RegButton } from './Registration.styled';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/auth-operations';
+// import { useCreateUserMutation } from 'redux/auth-createApi';
 
 const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  // const [createUser] = useCreateUserMutation();
 
   // const { data: baseList } = useFetchUsersQuery();
 
@@ -16,13 +18,15 @@ const Registration = () => {
     const formData = { name, email, password };
     formSubmitHandler(formData);
   };
-  const formSubmitHandler = data => {
+  const formSubmitHandler = ({ name, email, password }) => {
     // baseList.find(i => i.name.toLowerCase() === data.name.toLowerCase())
     //   ? Notiflix.Notify.failure('That name already in the list', {
     //       position: 'center-center',
     //     })
     // :
+
     dispatch(authOperations.register({ name, email, password }));
+    // createUser(data);
   };
 
   const handleChange = e => {
@@ -55,8 +59,8 @@ const Registration = () => {
         <input
           type="text"
           name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
           onChange={handleChange}

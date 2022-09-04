@@ -8,8 +8,7 @@ import ContactListItem from '../ContactListItem';
 import { Ul, TitleStyle } from './ContactsList.styled';
 
 export const ContactList = () => {
-  const { data } = useFetchContactsQuery();
-  const { isFetching } = useFetchContactsQuery();
+  const { data, isFetching } = useFetchContactsQuery();
 
   const filterValue = useSelector(getFilter);
   let newData = [];

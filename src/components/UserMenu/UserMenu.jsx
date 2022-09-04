@@ -1,12 +1,19 @@
-import { useSelector } from 'react-redux';
-import { getUserName } from '../../redux/auth-slice';
+import { useSelector, useDispatch } from 'react-redux';
+import authSelectors from 'redux/auth-selectors';
+import authOperations from 'redux/auth-operations';
+import defaultAvatar from './default-avatar.png';
+import { Div } from './UserMenu.styled';
 
 export default function UserMenu() {
-  const name = useSelector(getUserName);
+  const email = useSelector(authSelectors.getUserEmail);
+  const dispatch = useDispatch();
   return (
-    <div>
-      <span>Ласкаво Просимо, {name} </span>
-      <button type="button">Вихід</button>
-    </div>
+    <Div>
+      <img src={defaultAvatar} alt="" width="32" />
+      <span>Ласкаво Просимо, {email} </span>
+      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+        Вихід
+      </button>
+    </Div>
   );
 }

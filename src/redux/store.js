@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import { itemsSlice } from './contacts';
 import { contactsApi } from './contacts';
-// import { authApi } from './auth-slice';
+import { authApi } from './auth-createApi';
 import storage from 'redux-persist/lib/storage';
 import { authSlice } from './auth-slice';
 import {
@@ -19,7 +20,7 @@ import {
 const persistConfig = {
   key: 'root',
   storage,
-  // whitelist: ['filter'],
+  whitelist: ['filter'],
 };
 
 const persistedReducer = persistReducer(persistConfig, itemsSlice.reducer);
@@ -29,7 +30,7 @@ const persistedReducer = persistReducer(persistConfig, itemsSlice.reducer);
 const authPersistConfig = {
   key: 'auth',
   storage,
-  // whitelist: ['token'],
+  whitelist: ['token'],
 };
 
 const authPersistedReducer = persistReducer(
@@ -42,7 +43,7 @@ export const store = configureStore({
     contacts: persistedReducer,
     auth: authPersistedReducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
-    // [authApi.reducerPath]: authApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -51,12 +52,10 @@ export const store = configureStore({
       },
     }),
     contactsApi.middleware,
-    // authApi.middleware,
+    authApi.middleware,
   ],
 });
 
 export const persistor = persistStore(store);
 
-// setupListeners(store.dispatch);
-
-// export const persistor = persistStore(store);
+setupListeners(store.dispatch);

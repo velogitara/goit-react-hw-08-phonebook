@@ -9,7 +9,7 @@ import {
 import { useDeleteContactMutation } from 'redux/contacts';
 import Loader from '../Loader';
 
-const ContactListItem = ({ id, name, phone }) => {
+const ContactListItem = ({ id, name, number }) => {
   const [deleteContact, result] = useDeleteContactMutation();
   const { isLoading: isDeleting } = result;
   return (
@@ -20,7 +20,7 @@ const ContactListItem = ({ id, name, phone }) => {
       </span>
       <Number>
         <TitleStyle>Number:</TitleStyle>
-        <ValueStyle>{phone}</ValueStyle>
+        <ValueStyle>{number}</ValueStyle>
       </Number>
       <ButtonDelete
         type="button"

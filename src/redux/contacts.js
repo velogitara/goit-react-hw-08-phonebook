@@ -26,6 +26,8 @@ export const itemsSlice = createSlice({
     },
   },
 });
+
+// =============== Exports and Selectors
 export const { addFilter, addName, addNumber } = itemsSlice.actions;
 
 export const getFilter = state => state.contacts.filter;
@@ -36,8 +38,20 @@ export const getNumber = state => state.contacts.number;
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://630d9500109c16b9abe82b0f.mockapi.io/api/v1',
+    baseUrl: 'https://connections-api.herokuapp.com/',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      // console.log(token);
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+
+      return headers;
+    },
     tagTypes: ['Contacts'],
+    keepUnusedDataFor: 5,
+    refetchOnMountOrArgChange: true,
+    refetchOnFocus: true,
   }),
   endpoints: builder => ({
     fetchContacts: builder.query({

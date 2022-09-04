@@ -2,12 +2,11 @@ import { Form, P, RegButton } from './Login.styled';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/auth-operations';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-
-  // const { data: baseList } = useFetchUsersQuery();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -20,7 +19,8 @@ const Login = () => {
     //       position: 'center-center',
     //     })
     // :
-    dispatch(authOperations.login({ email, password }));
+
+    dispatch(authOperations.logIn({ email, password }));
   };
 
   const handleChange = e => {
@@ -42,7 +42,7 @@ const Login = () => {
   };
 
   return (
-    <Form autoComplete="off" onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <label>
         <P>Почта</P>
         <input
@@ -61,16 +61,16 @@ const Login = () => {
           type="password"
           name="password"
           inputMode="number"
-          minLength="6"
+          minLength="7"
           maxLength="12"
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,12}$"
-          title="(At least one lowercase letter(a - z).At least one uppercase letter(A - Z).At least one numeric value(0-9).At least one special symbol(!@#$%^&*=+-_).The total length should be greater than or equal to 6 and less or equal to 12."
+          // pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,12}$"
+          // title="(At least one lowercase letter(a - z).At least one uppercase letter(A - Z).At least one numeric value(0-9).At least one special symbol(!@#$%^&*=+-_).The total length should be greater than or equal to 6 and less or equal to 12."
           required
           value={password}
           onChange={handleChange}
         />
       </label>
-      <RegButton type="submit">Registration</RegButton>
+      <RegButton type="submit">Login</RegButton>
     </Form>
   );
 };
