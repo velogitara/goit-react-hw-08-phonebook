@@ -15,12 +15,12 @@ export default function UserMenu() {
 
   }
   return (
-    <Div>
-      <img src={defaultAvatar} alt="" width="32" />
-      <span>Ласкаво Просимо, {email} </span>
-      <button type="button" onClick={}>
-        Вихід
-      </button>
-    </Div>
+      <Div>
+          <img src={defaultAvatar} alt="" width="32" />
+          <span>Ласкаво Просимо, {email} </span>
+          <button type="button" onClick={logOutHandler}>
+              Вихід
+          </button>
+      </Div>
   );
 }
