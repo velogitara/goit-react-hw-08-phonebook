@@ -11,7 +11,7 @@ export default function UserMenu() {
   const navigate = useNavigate();
   const logOutHandler = () => {
     navigate("/login", {replace: true})
-    dispatch(authOperations.logOut())
+    // dispatch(authOperations.logOut())
 
   }
   return (
